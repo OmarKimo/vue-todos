@@ -3,7 +3,6 @@
     <button
       class="btn border-0 flex-grow-1 text-left shadow-none"
       :class="{ completed }"
-      @click="$emit('on-toggle')"
       v-if="!isEditing"
     >
       <span>{{ description }}</span>
@@ -23,9 +22,13 @@
     >
       <span class="fa fa-edit"></span>
     </button>
+    <button @click="$emit('on-toggle')" class="btn btn-outline-secondary border-0">
+      <span class="fa fa-check"></span>
+    </button>
     <button @click="$emit('on-delete')" class="btn btn-outline-danger border-0">
       <span class="fa fa-trash"></span>
     </button>
+    
   </li>
 </template>
 
