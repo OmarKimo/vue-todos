@@ -1,22 +1,28 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue";
+import Router from "vue-router";
 
-import mainTodo from '@/components/mainTodo'
-import doneTodo from '@/components/doneTodo'
+import home from "@/components/home";
+import todoList from "@/components/TodoList";
+import doneList from "@/components/doneList";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'mainTodo',
-      component: mainTodo
+      path: "/",
+      name: "Home",
+      component: home
     },
     {
-      path: '/doneTodo',
-      name: 'doneTodo',
-      component: doneTodo
+      path: "/todo",
+      name: "TodoList",
+      component: todoList
+    },
+    {
+      path: "/doneTodo",
+      name: "doneList",
+      component: doneList
     }
   ]
-})
+});

@@ -5,6 +5,9 @@
         <h1>Done TODOs</h1>
       </div>
     </div>
+    <h3 v-if="doneTodos.length < 1" class="text-justify">
+      You haven't done any TODO yet
+    </h3>
     <div class="row">
       <div class="col-12 col-sm-10 col-lg-6">
         <ul class="list-group">
@@ -27,7 +30,7 @@
 import Todo from "./Todo.vue";
 
 export default {
-  name: 'doneTodo',
+  name: "doneList",
   props: {
     listName: String
   },
@@ -37,29 +40,28 @@ export default {
     };
   },
   mounted() {
-    if (localStorage.getItem('doneTodos')) {
+    if (localStorage.getItem("doneTodos")) {
       try {
-        this.doneTodos = JSON.parse(localStorage.getItem('doneTodos'));
-      } catch(e) {
-        localStorage.removeItem('doneTodos');
+        this.doneTodos = JSON.parse(localStorage.getItem("doneTodos"));
+      } catch (e) {
+        localStorage.removeItem("doneTodos");
       }
     }
   },
   methods: {
     toggleTodo(todo) {
-        todo.completed = !todo.completed;
-        let todos = null;
-        try{
-            todos = JSON.parse(localStorage.getItem('todos'));
-            todos.push(todo);
-        }
-        catch(e){
-            todos = [todo]
-        }
-        const parsed = JSON.stringify(todos);
-        localStorage.setItem('todos', parsed);
-        this.doneTodos.splice(todo, 1);
-        this.saveToDos();
+      todo.completed = !todo.completed;
+      let todos = null;
+      try {
+        todos = JSON.parse(localStorage.getItem("todos"));
+        todos.push(todo);
+      } catch (e) {
+        todos = [todo];
+      }
+      const parsed = JSON.stringify(todos);
+      localStorage.setItem("todos", parsed);
+      this.doneTodos.splice(todo, 1);
+      this.saveToDos();
     },
     deleteTodo(deletedTodo) {
       this.doneTodos.splice(deletedTodo, 1);
@@ -69,9 +71,9 @@ export default {
       todo.description = newTodoDescription;
       this.saveToDos();
     },
-    saveToDos(){
+    saveToDos() {
       const parsed = JSON.stringify(this.doneTodos);
-      localStorage.setItem('doneTodos', parsed);
+      localStorage.setItem("doneTodos", parsed);
     }
   },
   components: { Todo }

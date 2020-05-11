@@ -1,19 +1,19 @@
 <template>
   <div>
     <Navigation></Navigation>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
-import Navigation from './components/Navigation'
+import Navigation from "./components/Navigation";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    'Navigation': Navigation
+    Navigation: Navigation
   }
-}
+};
 </script>
 
 <style lang="scss">

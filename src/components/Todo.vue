@@ -4,6 +4,7 @@
       class="btn border-0 flex-grow-1 text-left shadow-none"
       :class="{ completed }"
       v-if="!isEditing"
+      :title="description"
     >
       <span>{{ description }}</span>
     </button>
@@ -17,18 +18,36 @@
       />
     </form>
     <button
+      v-if="type == 'todo'"
       @click="startEditing()"
-      class="btn btn-outline-primary border-0 ml-2"
+      class="btn btn-outline-primary border-0 ml-2 editButton"
+      title="edit"
     >
       <span class="fa fa-edit"></span>
     </button>
-    <button @click="$emit('on-toggle')" class="btn btn-outline-secondary border-0">
+    <button
+      v-if="type == 'todo'"
+      @click="$emit('on-toggle')"
+      title="Mark as Done"
+      class="btn btn-outline-secondary border-0 checkButton"
+    >
       <span class="fa fa-check"></span>
     </button>
-    <button @click="$emit('on-delete')" class="btn btn-outline-danger border-0">
+    <button
+      v-else
+      @click="$emit('on-toggle')"
+      title="Mark as undone"
+      class="btn btn-outline-secondary border-0 checkButton"
+    >
+      <span class="fa fa-check"></span>
+    </button>
+    <button
+      @click="$emit('on-delete')"
+      title="delete"
+      class="btn btn-outline-danger border-0 deleteButton"
+    >
       <span class="fa fa-trash"></span>
     </button>
-    
   </li>
 </template>
 
@@ -42,7 +61,8 @@ export default {
   },
   props: {
     description: String,
-    completed: Boolean
+    completed: Boolean,
+    type: String
   },
   methods: {
     startEditing() {
