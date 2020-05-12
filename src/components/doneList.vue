@@ -18,7 +18,6 @@
             :completed="true"
             @on-toggle="toggleTodo(todo)"
             @on-delete="deleteTodo(todo)"
-            @on-edit="editTodo(todo, $event)"
           />
         </ul>
       </div>
@@ -48,6 +47,7 @@ export default {
   methods: {
     toggleTodo(todo) {
       todo.completed = !todo.completed;
+      this.doneTodos.splice(this.doneTodos.indexOf(todo), 1);
       let todos = null;
       try {
         todos = JSON.parse(localStorage.getItem("todos"));
@@ -57,15 +57,10 @@ export default {
       }
       const parsed = JSON.stringify(todos);
       localStorage.setItem("todos", parsed);
-      this.doneTodos.splice(todo, 1);
       this.saveToDos();
     },
     deleteTodo(deletedTodo) {
-      this.doneTodos.splice(deletedTodo, 1);
-      this.saveToDos();
-    },
-    editTodo(todo, newTodoDescription) {
-      todo.description = newTodoDescription;
+      this.doneTodos.splice(this.doneTodos.indexOf(deletedTodo), 1);
       this.saveToDos();
     },
     saveToDos() {

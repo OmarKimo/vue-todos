@@ -10,7 +10,7 @@
       <br />
     </div>
     <div class="row mb-3">
-      <create-todo @on-new-todo="addTodo($event)" />
+      <create-todo ref="createTodo" @on-new-todo="addTodo($event)" />
     </div>
     <div class="row">
       <div class="col-12 col-sm-10 col-lg-6">
@@ -57,7 +57,8 @@ export default {
       this.saveToDos();
     },
     toggleTodo(todo) {
-      todo.completed = !todo.completed;
+      todo.completed = true;
+      this.todos.splice(this.todos.indexOf(todo), 1);
       let doneTodos = null;
       try {
         doneTodos = JSON.parse(localStorage.getItem("doneTodos"));
@@ -67,11 +68,10 @@ export default {
       }
       const parsed = JSON.stringify(doneTodos);
       localStorage.setItem("doneTodos", parsed);
-      this.todos.splice(todo, 1);
       this.saveToDos();
     },
     deleteTodo(deletedTodo) {
-      this.todos.splice(deletedTodo, 1);
+      this.todos.splice(this.todos.indexOf(deletedTodo), 1);
       this.saveToDos();
     },
     editTodo(todo, newTodoDescription) {

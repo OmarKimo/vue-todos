@@ -146,4 +146,28 @@ describe('Todo', () => {
         formInput.trigger('submit.prevent')
         expect(wrapper.vm.$data.newTodoDescription).toBe('test')
     })
+
+    it('at the end of editing call finishEditing', () => {
+        const mockMethod = jest.fn()
+        const wrapper = mount(Todo, {
+            propsData:{
+                description: 'bla',
+                completed: false,
+                type: 'todo'
+            }, 
+            methods: {
+                finishEditing: mockMethod
+            },
+            data(){
+                return {
+                    isEditing: true
+                }
+            }
+        })
+        const textInput = wrapper.find('input')
+        textInput.setValue("test")
+        const formInput = wrapper.find('#editButton')
+        formInput.trigger('click')
+        expect(mockMethod).toBeCalled()
+    })
 })
