@@ -6,8 +6,7 @@
         v-for="routes in links"
         v-bind:key="routes.id"
         :to="`${routes.page}`"
-        >{{ routes.text }}</b-nav-item
-      >
+        >{{ routes.text }}</b-nav-item>
     </b-nav>
   </div>
 </template>
@@ -38,6 +37,7 @@ export default {
   }
 };
 </script>
+
 <style>
 .spacing {
   margin-right: 10px;

@@ -31,9 +31,6 @@ import Todo from "./Todo.vue";
 
 export default {
   name: "doneList",
-  props: {
-    listName: String
-  },
   data() {
     return {
       doneTodos: []

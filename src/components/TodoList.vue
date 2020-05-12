@@ -37,9 +37,6 @@ import CreateTodo from "./CreateTodo.vue";
 
 export default {
   name: "TodoList",
-  props: {
-    listName: String
-  },
   data() {
     return {
       todos: []

@@ -5,6 +5,7 @@
       :class="{ completed }"
       v-if="!isEditing"
       :title="description"
+      id="mainButton"
     >
       <span>{{ description }}</span>
     </button>
@@ -20,8 +21,9 @@
     <button
       v-if="type == 'todo'"
       @click="startEditing()"
-      class="btn btn-outline-primary border-0 ml-2 editButton"
+      class="btn btn-outline-primary border-0 ml-2"
       title="edit"
+      id="editButton"
     >
       <span class="fa fa-edit"></span>
     </button>
@@ -29,7 +31,8 @@
       v-if="type == 'todo'"
       @click="$emit('on-toggle')"
       title="Mark as Done"
-      class="btn btn-outline-secondary border-0 checkButton"
+      class="btn btn-outline-secondary border-0"
+      id="checkButton"
     >
       <span class="fa fa-check"></span>
     </button>
@@ -37,14 +40,16 @@
       v-else
       @click="$emit('on-toggle')"
       title="Mark as undone"
-      class="btn btn-outline-secondary border-0 checkButton"
+      class="btn btn-outline-secondary border-0"
+      id="checkButton"
     >
       <span class="fa fa-check"></span>
     </button>
     <button
       @click="$emit('on-delete')"
       title="delete"
-      class="btn btn-outline-danger border-0 deleteButton"
+      class="btn btn-outline-danger border-0"
+      id="deleteButton"
     >
       <span class="fa fa-trash"></span>
     </button>
@@ -53,6 +58,7 @@
 
 <script>
 export default {
+  name: 'Todo',
   data() {
     return {
       isEditing: false,

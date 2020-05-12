@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  name: 'CreateTodo',
   data() {
     return {
       newTodo: ""
